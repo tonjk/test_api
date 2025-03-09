@@ -13,7 +13,7 @@ def test_api():
     print('Print with flushing', flush=True)
     return 'Testing API is completed.', 200
 
-@app.route('test_post',methods=['POST'])
+@app.route('/test_post',methods=['POST'])
 def test_post():
     data = request.json
     sentence = data.get('sentence')
