@@ -17,7 +17,7 @@ def test_api():
 def test_post():
     data = request.json
     sentence = data.get('sentence')
-    response = str(sentence) + ' ' + Thank you for your request. ^^
+    response = str(sentence) + ' ' + 'Thank you for your request. ^^'
     return jsonify({"response": response}), 200
     
 
