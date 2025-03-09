@@ -9,6 +9,8 @@ def health_check():
 
 @app.route('/test_api',methods=['GET'])
 def test_api():
+    print('Print without flushing')
+    print('Print with flushing', flush=True)
     return 'Testing API is completed.', 200
 
 @app.route('test_post',methods=['POST'])
