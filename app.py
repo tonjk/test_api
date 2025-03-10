@@ -3,14 +3,8 @@ from flask import Flask,request,jsonify
 app = Flask(__name__)
 
 # check health path
-@app.route('/',methods=['GET'])
-def health_check():
-    return 'Hello world, this testing is completed.', 200
-
-@app.route('/test_api',methods=['GET'])
+@app.route('/healthy',methods=['GET'])
 def test_api():
-    print('Print without flushing')
-    print('Print with flushing', flush=True)
     return 'Testing API is completed.', 200
 
 @app.route('/test_post',methods=['POST'])
