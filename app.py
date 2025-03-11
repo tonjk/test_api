@@ -53,6 +53,16 @@ def handle_message(event):
     # message_text = event.message.text
     send_flex_message(user_id, "thank you :)")
 
+@app.route('/liff_submit',methods=['POST'])
+def liff_submit():
+    data = request.json
+    p_group = data.get('productGroup')
+    p_name = data.get('productName')
+    p_rating = data.get('rating')
+    p_review = data.get('review')
+    print(f"{p_group} - {p_name} - {p_rating} - {p_review}", flush=True)
+    return jsonify({"response": f"{p_group} - {p_name} - {p_rating} - {p_review}"}), 200
+    
 
 # check health path
 @app.route('/healthy',methods=['GET'])
