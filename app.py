@@ -55,7 +55,7 @@ def handle_message(event):
     user_message = event.message.text
     user_id = event.source.user_id
     send_flex_message(user_id, "thank you :)")
-    text_message = TextMessage(text="thank you from Tokens :)"])
+    text_message = TextMessage(text="thank you from Tokens :)")
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message_with_http_info(ReplyMessageRequest(reply_token=event.reply_token, messages=[text_message]))
