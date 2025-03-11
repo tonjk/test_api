@@ -17,22 +17,6 @@ print(LINE_CHANNEL_SECRET, flush=True)
 configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
-@app.route("/callback", methods=["POST"])
-def callback():
-    """Handle webhook requests from Line."""
-    # Get the signature and body
-    signature = request.headers.get("X-Line-Signature")
-    body = request.get_data(as_text=True)
-
-    # handle webhook body
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
-        abort(400)
-
-    return 'OK'
-
 def send_flex_message(user_id, response_text):
     token = LINE_CHANNEL_ACCESS_TOKEN
     headers = {'Content-Type': 'application/json',
@@ -49,11 +33,32 @@ def send_flex_message(user_id, response_text):
     else:
         print(f"Failed to send message. Status: {response.status_code}, Response: {response.text}")
 
+@app.route("/callback", methods=['POST'])
+def callback():
+    # get X-Line-Signature header value
+    signature = request.headers['X-Line-Signature']
+
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
+        abort(400)
+
+    return 'OK'
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
+    user_message = event.message.text
     user_id = event.source.user_id
-    # message_text = event.message.text
     send_flex_message(user_id, "thank you :)")
+    text_message = TextMessage(text="thank you from Tokens :)"])
+    with ApiClient(configuration) as api_client:
+        line_bot_api = MessagingApi(api_client)
+        line_bot_api.reply_message_with_http_info(ReplyMessageRequest(reply_token=event.reply_token, messages=[text_message]))
 
 @app.route('/liff_submit',methods=['POST'])
 def liff_submit():
