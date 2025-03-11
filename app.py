@@ -52,13 +52,14 @@ def callback():
     return 'OK'
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
-    user_message = event.message.text
+    # user_message = event.message.text
+    user_message = "Thank you for your reviewing. :D"
     user_id = event.source.user_id
-    send_flex_message(user_id, "thank you :)")
-    text_message = TextMessage(text="thank you from Tokens :)")
+    # send_flex_message(user_id, user_message)
+    text_message = TextMessage(text=user_message)
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
-        line_bot_api.reply_message_with_http_info(ReplyMessageRequest(reply_token=event.reply_token, messages=[text_message]))
+        line_bot_api.reply_message_with_http_info(ReplyMessageRequest(reply_token=event.replyToken, messages=[text_message]))
 
 @app.route('/liff_submit',methods=['POST'])
 def liff_submit():
