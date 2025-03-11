@@ -59,7 +59,7 @@ def handle_message(event):
     text_message = TextMessage(text=user_message)
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
-        line_bot_api.reply_message_with_http_info(ReplyMessageRequest(reply_token=event.replyToken, messages=[text_message]))
+        line_bot_api.reply_message_with_http_info(ReplyMessageRequest(reply_token=event.reply_token, messages=[text_message]))
 
 @app.route('/liff_submit',methods=['POST'])
 def liff_submit():
