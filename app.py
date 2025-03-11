@@ -53,7 +53,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
     # user_message = event.message.text
-    user_message = "Thank you for your reviewing. :D"
+    user_message = "Thank you for your valuable review. ✋😅"
     user_id = event.source.user_id
     # send_flex_message(user_id, user_message)
     text_message = TextMessage(text=user_message)
