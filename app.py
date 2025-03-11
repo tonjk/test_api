@@ -1,9 +1,9 @@
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,abort
 from linebot.v3 import WebhookHandler
 from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.messaging import Configuration # ApiClient, MessagingApi, ReplyMessageRequest, TextMessage, ImageMessage, FlexMessage
 from linebot.v3.webhooks import MessageEvent, TextMessageContent, LocationMessageContent
-import os
+import os, json, requests
 
 app = Flask(__name__)
 
@@ -30,7 +30,7 @@ def callback():
     return 'OK'
 
 def send_flex_message(user_id, response_text):
-    token = LINE_OA_CONFIGS[current_oa]['channel_access_token']
+    token = LINE_CHANNEL_ACCESS_TOKEN
     headers = {'Content-Type': 'application/json',
                'Authorization': f'Bearer {token}'}
     data = {"to": user_id,
