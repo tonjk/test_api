@@ -4,6 +4,8 @@ from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.messaging import Configuration # ApiClient, MessagingApi, ReplyMessageRequest, TextMessage, ImageMessage, FlexMessage
 from linebot.v3.webhooks import MessageEvent, TextMessageContent, LocationMessageContent
 import os, json, requests
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
