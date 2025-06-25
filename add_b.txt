@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 add_bb 1
 add_bb 2
 <<<<<<< HEAD
@@ -8,3 +9,6 @@ my_master_bb
 =======
 >>>>>>> e98b398 (add_b)
 >>>>>>> 6951db1 (add bb 2)
+=======
+my_master_bb
+>>>>>>> 13eab04 (master add b)
