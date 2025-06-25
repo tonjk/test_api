@@ -1,1 +1,2 @@
 init text
+add text c2
