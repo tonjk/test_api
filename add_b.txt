@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 my_master_bb
+=======
+remove all
+>>>>>>> my_bb
